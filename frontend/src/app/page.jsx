@@ -1,7 +1,7 @@
 import Navigation from "@/components/Navigation"
 import HeroSection from "@/components/HeroSection"
 import TrustScorePreview from "@/components/TrustScorePreview"
-import FeaturesGrid from "@/components/FeaturesGrid"
+import DisplayCards from "@/components/ui/display-cards"
 import Footer from "@/components/Footer"
 
 export default function Home() {
@@ -9,8 +9,8 @@ export default function Home() {
     <div className="min-h-screen">
       <Navigation />
       <HeroSection />
-      <TrustScorePreview />
-      <FeaturesGrid />
+  <TrustScorePreview />
+  <DisplayCards />
       <Footer />
     </div>
   )

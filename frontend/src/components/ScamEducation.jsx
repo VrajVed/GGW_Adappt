@@ -15,6 +15,7 @@ const commonScams = [
     prevention: ["Never share OTP with anyone", "Banks never ask for PIN/CVV", "Verify caller identity"],
     preventionHi: ["किसी के साथ OTP साझा न करें", "बैंक कभी PIN/CVV नहीं मांगते", "कॉलर की पहचान सत्यापित करें"],
     color: "from-red-500 to-orange-500",
+    govLink: "https://cybercrime.gov.in/",
   },
   {
     icon: <MessageSquare className="w-6 h-6" />,
@@ -25,6 +26,7 @@ const commonScams = [
     prevention: ["Don't click unknown links", "Check sender authenticity", "Report suspicious messages"],
     preventionHi: ["अज्ञात लिंक पर क्लिक न करें", "प्रेषक की प्रामाणिकता जांचें", "संदिग्ध संदेशों की रिपोर्ट करें"],
     color: "from-blue-500 to-cyan-500",
+    govLink: "https://www.cert-in.org.in/",
   },
   {
     icon: <CreditCard className="w-6 h-6" />,
@@ -35,6 +37,7 @@ const commonScams = [
     prevention: ["Verify merchant name", "Check transaction details", "Never accept unknown requests"],
     preventionHi: ["व्यापारी का नाम सत्यापित करें", "लेनदेन विवरण जांचें", "अज्ञात अनुरोध स्वीकार न करें"],
     color: "from-purple-500 to-pink-500",
+    govLink: "https://www.rbi.org.in/",
   },
   {
     icon: <Mail className="w-6 h-6" />,
@@ -45,6 +48,7 @@ const commonScams = [
     prevention: ["No legitimate prize needs payment", "Verify through official channels", "Report to authorities"],
     preventionHi: ["कोई वैध पुरस्कार भुगतान की मांग नहीं करता", "आधिकारिक चैनलों के माध्यम से सत्यापित करें", "अधिकारियों को रिपोर्ट करें"],
     color: "from-green-500 to-emerald-500",
+    govLink: "https://consumerhelpline.gov.in/",
   },
 ]
 
@@ -151,7 +155,15 @@ export default function ScamEducation({ hindiMode }) {
                 variant="outline"
                 size="sm"
                 className="w-full"
-                onClick={() => setExpandedScam(expandedScam === index ? null : index)}
+                onClick={() => {
+                  const link = scam.govLink
+                  if (link) {
+                    // open gov link in a new tab so user can view the official guidance
+                    window.open(link, "_blank", "noopener,noreferrer")
+                  } else {
+                    setExpandedScam(expandedScam === index ? null : index)
+                  }
+                }}
               >
                 {hindiMode ? "उदाहरण देखें" : "See Example"}
               </Button>
@@ -217,7 +229,11 @@ export default function ScamEducation({ hindiMode }) {
               <Button size="lg" variant="destructive">
                 {hindiMode ? "बैंक को कॉल करें" : "Call Bank"}
               </Button>
-              <Button size="lg" variant="outline">
+              <Button
+                size="lg"
+                variant="outline"
+                onClick={() => window.open("https://cybercrime.gov.in/", "_blank", "noopener,noreferrer")}
+              >
                 {hindiMode ? "साइबर क्राइम रिपोर्ट" : "Report Cybercrime"}
               </Button>
             </div>
