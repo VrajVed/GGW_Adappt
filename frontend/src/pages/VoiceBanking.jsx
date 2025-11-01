@@ -4,6 +4,7 @@ import VoiceInterface from "@/components/VoiceInterface"
 import SaathiAssistant from "@/components/SaathiAssistant"
 import { motion } from "framer-motion"
 import { Mic, Globe, CheckCircle, AlertCircle } from "lucide-react"
+import DisplayCards from "@/components/ui/display-cards"
 
 export default function VoiceBankingPage() {
   return (
@@ -69,31 +70,41 @@ export default function VoiceBankingPage() {
           </div>
         </section>
 
-        {/* Features Section */}
+        {/* Features Section (replaced with stacked DisplayCards) */}
         <section className="px-4 sm:px-6 lg:px-8 py-16 bg-muted/30">
           <div className="max-w-7xl mx-auto">
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <FeatureCard
-                icon={<Mic className="w-8 h-8" />}
-                title="Natural Speech"
-                description="Speak naturally. No need to memorize commands or keywords."
-              />
-              <FeatureCard
-                icon={<Globe className="w-8 h-8" />}
-                title="10+ Languages"
-                description="Hindi, English, Tamil, Telugu, Marathi, Bengali, and more."
-              />
-              <FeatureCard
-                icon={<CheckCircle className="w-8 h-8" />}
-                title="Visual Confirmation"
-                description="See and confirm every action before it's executed."
-              />
-              <FeatureCard
-                icon={<AlertCircle className="w-8 h-8" />}
-                title="Safety Checks"
-                description="Automatic scam detection and fraud prevention on every command."
-              />
-            </div>
+            <DisplayCards
+              cards={[
+                {
+                  icon: <Mic className="w-8 h-8" />,
+                  title: "Natural Speech",
+                  description: "Speak naturally. No need to memorize commands or keywords.",
+                  date: "",
+                  className: "[grid-area:stack] hover:-translate-y-10 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50",
+                },
+                {
+                  icon: <Globe className="w-8 h-8" />,
+                  title: "10+ Languages",
+                  description: "Hindi, English, Tamil, Telugu, Marathi, Bengali, and more.",
+                  date: "",
+                  className: "[grid-area:stack] translate-x-16 translate-y-10 hover:-translate-y-1",
+                },
+                {
+                  icon: <CheckCircle className="w-8 h-8" />,
+                  title: "Visual Confirmation",
+                  description: "See and confirm every action before it's executed.",
+                  date: "",
+                  className: "[grid-area:stack] translate-x-32 translate-y-20 hover:translate-y-10",
+                },
+                {
+                  icon: <AlertCircle className="w-8 h-8" />,
+                  title: "Safety Checks",
+                  description: "Automatic scam detection and fraud prevention on every command.",
+                  date: "",
+                  className: "[grid-area:stack] translate-x-48 translate-y-28 hover:translate-y-14",
+                },
+              ]}
+            />
           </div>
         </section>
       </main>
