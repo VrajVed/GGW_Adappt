@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { login } from '@/lib/auth'
 
@@ -9,6 +9,16 @@ export default function Login() {
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
+  // If user already logged in in this browser session (in-memory), redirect to /home
+  // We intentionally use an in-memory window flag so a full page reload will require login again.
+  useEffect(() => {
+    try {
+      if (typeof window !== 'undefined' && window.__demoUser) {
+        navigate('/home')
+      }
+    } catch (e) {}
+  }, [navigate])
+
   async function handleSubmit(e) {
     e.preventDefault()
     setLoading(true)
@@ -16,8 +26,10 @@ export default function Login() {
     const user = await login(email, password)
     setLoading(false)
     if (user) {
-      // store a simple flag in localStorage to indicate logged in for demo
-      localStorage.setItem('demo_user', JSON.stringify(user))
+      // store a simple in-memory flag for the current session so the user
+      // doesn't need to re-login while navigating the SPA. A full reload will
+      // clear this and the user will be asked to login again.
+      try { window.__demoUser = user } catch (e) {}
       // Redirect to main Home page for the app
       navigate('/home')
     } else {
