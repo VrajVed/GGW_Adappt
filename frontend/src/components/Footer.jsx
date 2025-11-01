@@ -3,16 +3,14 @@ import { Mic, Shield, Layers, TrendingUp } from "lucide-react"
 
 export default function Footer() {
   return (
-    <footer className="bg-muted/30 border-t border-border">
+  <footer className="bg-muted/80 border-t border-border/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="space-y-4">
-            <Link to="/" className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center text-white font-bold text-xl">
-                S
-              </div>
-              <span className="text-xl font-bold">SahiPay</span>
+            <Link to="/" className="flex items-center">
+              <img src="/logo.png" alt="SahiPay logo" className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-xl object-cover" />
+              <span className="sr-only">SahiPay</span>
             </Link>
             <p className="text-sm text-muted-foreground">
               Voice-first banking for everyone. सबके लिए। सबकी भाषा में।
@@ -69,8 +67,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-border text-center text-sm text-muted-foreground">
-          <p>&copy; 2024 SahiPay. All rights reserved. Made with ❤️ for Bharat.</p>
+        <div className="mt-8 pt-8 border-t border-border/50 text-center text-sm text-muted-foreground">
+          <p>Copyright @2025 - Made by Team GitGoneWild</p>
         </div>
       </div>
     </footer>
