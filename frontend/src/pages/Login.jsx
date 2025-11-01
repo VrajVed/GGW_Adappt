@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import supabase from '../helper/supabaseClient';
 import { login } from '@/lib/auth'
@@ -11,6 +11,16 @@ export default function Login() {
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
+
+  // If user already logged in in this browser session (in-memory), redirect to /home
+  // We intentionally use an in-memory window flag so a full page reload will require login again.
+  useEffect(() => {
+    try {
+      if (typeof window !== 'undefined' && window.__demoUser) {
+        navigate('/home')
+      }
+    } catch (e) {}
+  }, [navigate])
 
   
 

@@ -17,6 +17,9 @@ export default function Navigation() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6">
+            <Link to="/pay-insights" className="text-sm font-medium hover:text-primary transition-colors">
+              Pay &amp; Insights
+            </Link>
             <Link to="/voice-banking" className="text-sm font-medium hover:text-primary transition-colors">
               Voice Banking
             </Link>
@@ -48,24 +51,27 @@ export default function Navigation() {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-background border-t border-border">
-          <div className="px-4 py-4 space-y-3">
-            <Link to="/voice-banking" className="block py-2 text-sm font-medium hover:text-primary transition-colors">
-              Voice Banking
-            </Link>
-            <Link to="/trust-score" className="block py-2 text-sm font-medium hover:text-primary transition-colors">
-              Trust Score
-            </Link>
-            <Link to="/guardian" className="block py-2 text-sm font-medium hover:text-primary transition-colors">
-              Guardian
-            </Link>
-            <Link to="/simple-banking" className="block py-2 text-sm font-medium hover:text-primary transition-colors">
-              Simple UI
-            </Link>
-            <Link to="/scam-shield" className="block py-2 text-sm font-medium hover:text-primary transition-colors">
-              ScamShield
-            </Link>
-            <Button className="w-full gradient-primary text-white">Get Started</Button>
-          </div>
+            <div className="px-4 py-4 space-y-3">
+              <Link to="/pay-insights" className="block py-2 text-sm font-medium hover:text-primary transition-colors">
+                Pay &amp; Insights
+              </Link>
+              <Link to="/voice-banking" className="block py-2 text-sm font-medium hover:text-primary transition-colors">
+                Voice Banking
+              </Link>
+              <Link to="/trust-score" className="block py-2 text-sm font-medium hover:text-primary transition-colors">
+                Trust Score
+              </Link>
+              <Link to="/guardian" className="block py-2 text-sm font-medium hover:text-primary transition-colors">
+                Guardian
+              </Link>
+              <Link to="/simple-banking" className="block py-2 text-sm font-medium hover:text-primary transition-colors">
+                Simple UI
+              </Link>
+              <Link to="/scam-shield" className="block py-2 text-sm font-medium hover:text-primary transition-colors">
+                ScamShield
+              </Link>
+              <Button className="w-full gradient-primary text-white">Get Started</Button>
+            </div>
         </div>
       )}
     </nav>

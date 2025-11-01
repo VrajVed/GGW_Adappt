@@ -10,6 +10,7 @@ import VoiceBanking from './pages/VoiceBanking'
 import TrustScore from './pages/TrustScore'
 import SimpleBanking from './pages/SimpleBanking'
 import ScamShield from './pages/ScamShield'
+import PayInsights from './pages/PayInsights'
 import FinancialGuardian from './pages/FinancialGuardian'
 import Preloader from './components/Preloader'
 import AnimatedGridPattern from './components/ui/animated-grid-pattern'
@@ -42,6 +43,12 @@ function App() {
             <Route path="/guardian" element={<Wrapper><FinancialGuardian /></Wrapper>} />
             <Route path="/simple-banking" element={<Wrapper><SimpleBanking /></Wrapper>} />
             <Route path="/scam-shield" element={<Wrapper><ScamShield /></Wrapper>} />
+            <Route path="/voice-banking" element={<VoiceBanking />} />
+            <Route path="/trust-score" element={<TrustScore />} />
+            <Route path="/guardian" element={<FinancialGuardian />} />
+            <Route path="/simple-banking" element={<SimpleBanking />} />
+            <Route path="/pay-insights" element={<PayInsights />} />
+            <Route path="/scam-shield" element={<ScamShield />} />
           </Routes>
           <VisualEditsMessenger />
         </div>
