@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { Button } from "@/components/ui/button"
+// Get Started button removed per recent changes
 import { Menu, X } from "lucide-react"
 import { useState } from "react"
 
@@ -23,13 +23,15 @@ export default function Navigation() {
             <Link to="/trust-score" className="text-sm font-medium hover:text-primary transition-colors">
               Trust Score
             </Link>
+            <Link to="/guardian" className="text-sm font-medium hover:text-primary transition-colors">
+              Guardian
+            </Link>
             <Link to="/simple-banking" className="text-sm font-medium hover:text-primary transition-colors">
               Simple UI
             </Link>
             <Link to="/scam-shield" className="text-sm font-medium hover:text-primary transition-colors">
               ScamShield
             </Link>
-            <Button className="gradient-primary text-white">Get Started</Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -52,6 +54,9 @@ export default function Navigation() {
             </Link>
             <Link to="/trust-score" className="block py-2 text-sm font-medium hover:text-primary transition-colors">
               Trust Score
+            </Link>
+            <Link to="/guardian" className="block py-2 text-sm font-medium hover:text-primary transition-colors">
+              Guardian
             </Link>
             <Link to="/simple-banking" className="block py-2 text-sm font-medium hover:text-primary transition-colors">
               Simple UI
