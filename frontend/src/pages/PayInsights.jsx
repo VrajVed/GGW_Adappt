@@ -272,60 +272,60 @@ export default function PayInsights() {
         {uiLevel === 1 ? (
           /* Level 1: Beginner - Large buttons, simple layout */
           <div className="space-y-6">
-            <Card className={`p-8 ${highContrast ? 'bg-black border-2 border-white' : 'bg-gradient-to-br from-primary/5 to-secondary/5'}`}>
+            <Card className={`p-8 ${highContrast ? 'bg-black border-2 border-white' : 'bg-white shadow-sm'}`}>
               <div className="text-center mb-8">
-                <div className={`text-5xl mb-4 ${largeFonts ? 'text-6xl' : ''}`}>👋</div>
-                <h2 className={`font-bold mb-2 ${largeFonts ? 'text-3xl' : 'text-2xl'} ${highContrast ? 'text-white' : ''}`}>Namaste!</h2>
-                <p className={`${largeFonts ? 'text-xl' : 'text-lg'} ${highContrast ? 'text-gray-300' : 'text-muted-foreground'}`}>Send money easily</p>
+                <div className={`text-5xl mb-3 ${largeFonts ? 'text-6xl' : ''}`}>👋</div>
+                <h2 className={`font-semibold mb-1 ${largeFonts ? 'text-3xl' : 'text-2xl'} ${highContrast ? 'text-white' : 'text-gray-800'}`}>Namaste!</h2>
+                <p className={`${largeFonts ? 'text-lg' : 'text-base'} ${highContrast ? 'text-gray-300' : 'text-gray-500'}`}>Send money easily</p>
               </div>
 
               {/* Large Contact Selection */}
-              <div className="grid grid-cols-2 gap-4 mb-6">
+              <div className="grid grid-cols-2 gap-3 mb-6">
                 {contacts.slice(0, 4).map(c => (
                   <motion.button
                     key={c.id}
                     onClick={() => setSelected(c)}
-                    className={`p-6 rounded-2xl border-2 transition-all ${
+                    className={`p-5 rounded-xl border transition-all ${
                       selected.id === c.id
-                        ? highContrast ? 'border-white bg-white text-black' : 'border-primary bg-primary/10'
-                        : highContrast ? 'border-white/50 bg-black' : 'border-border bg-card hover:border-primary/50'
+                        ? highContrast ? 'border-white bg-white text-black' : 'border-blue-400 bg-blue-50 shadow-sm'
+                        : highContrast ? 'border-white/50 bg-black' : 'border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm'
                     } ${largeFonts ? 'min-h-[140px]' : 'min-h-[120px]'}`}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    <div className={`w-16 h-16 rounded-full flex items-center justify-center text-white font-bold mx-auto mb-3 ${c.color} ${largeFonts ? 'w-20 h-20' : ''}`}>
-                      <span className={largeFonts ? 'text-2xl' : 'text-xl'}>{c.name.split(' ').map(s => s[0]).slice(0,2).join('')}</span>
+                    <div className={`w-14 h-14 rounded-full flex items-center justify-center text-white font-semibold mx-auto mb-2 ${c.color} ${largeFonts ? 'w-16 h-16' : ''}`}>
+                      <span className={largeFonts ? 'text-xl' : 'text-lg'}>{c.name.split(' ').map(s => s[0]).slice(0,2).join('')}</span>
                     </div>
-                    <div className={`font-bold ${largeFonts ? 'text-lg' : 'text-base'} ${highContrast ? 'text-white' : ''}`}>{c.name}</div>
-                    <div className={`text-xs mt-1 ${highContrast ? 'text-gray-300' : 'text-muted-foreground'}`}>{c.upi}</div>
+                    <div className={`font-semibold ${largeFonts ? 'text-base' : 'text-sm'} ${highContrast ? 'text-white' : 'text-gray-800'}`}>{c.name}</div>
+                    <div className={`text-xs mt-0.5 ${highContrast ? 'text-gray-300' : 'text-gray-500'}`}>{c.upi}</div>
                   </motion.button>
                 ))}
               </div>
 
               {/* Large Amount Input */}
               <div className="mb-6">
-                <label className={`block mb-2 ${largeFonts ? 'text-lg' : 'text-base'} ${highContrast ? 'text-white' : ''}`}>Amount (₹)</label>
+                <label className={`block mb-2 font-medium ${largeFonts ? 'text-base' : 'text-sm'} ${highContrast ? 'text-white' : 'text-gray-700'}`}>Amount (₹)</label>
                 <input
                   type="number"
                   min="1"
                   value={amount}
                   onChange={e => setAmount(e.target.value)}
-                  className={`w-full ${largeFonts ? 'px-6 py-5 text-xl' : 'px-4 py-4 text-lg'} rounded-xl border-2 border-border bg-background outline-none focus:ring-4 focus:ring-primary/20 ${highContrast ? 'border-white' : ''}`}
+                  className={`w-full ${largeFonts ? 'px-5 py-4 text-xl' : 'px-4 py-3 text-lg'} rounded-lg border border-gray-300 bg-white outline-none focus:ring-2 focus:ring-green-500/30 focus:border-green-500 ${highContrast ? 'border-white' : ''}`}
                 />
               </div>
 
               {/* Large Pay Button */}
-              <Button
+              <button
                 onClick={onPayClick}
                 disabled={status === 'processing'}
-                className={`w-full ${largeFonts ? 'py-6 text-xl' : 'py-5 text-lg'} rounded-xl ${
+                className={`w-full ${largeFonts ? 'py-5 text-xl' : 'py-4 text-lg'} rounded-lg font-semibold transition-all cursor-pointer ${
                   highContrast
                     ? 'bg-white text-black hover:bg-gray-200 border-2 border-white'
-                    : 'bg-gradient-to-br from-blue-500 to-cyan-500 text-white'
+                    : 'bg-green-600 text-white hover:bg-green-700 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed'
                 }`}
               >
                 {status === 'processing' ? 'Processing...' : '💸 Send Money'}
-              </Button>
+              </button>
             </Card>
           </div>
         ) : uiLevel === 2 ? (
@@ -391,104 +391,161 @@ export default function PayInsights() {
                   </Button>
                 </form>
               </Card>
+
+              
+              
             </div>
+              {/* Safety Tips Card */}
+              <Card className={`p-5 m-0 col-auto${highContrast ? 'bg-blue-50 border-2 border-blue-500' : 'bg-blue-50/50 border border-blue-200'}`}>
+                <div className="flex items-start gap-3">
+                  <div className="text-2xl">💡</div>
+                  <div className="flex-1">
+                    <h3 className={`font-semibold mb-2 ${largeFonts ? 'text-base' : 'text-sm'} ${highContrast ? 'text-blue-900' : 'text-blue-900'}`}>
+                      Money Management Tip
+                    </h3>
+                    <p className={`${largeFonts ? 'text-sm' : 'text-xs'} text-blue-800 mb-10`}>
+                      Always verify the UPI ID before sending money. Double-check recipient details to avoid fraud.
+                    </p>
+                    <div className="flex items-start gap-1 p-5 rounded-lg bg-amber-50 border border-amber-200">
+                      <div className="text-lg">🛡️</div>
+                      <div>
+                        <p className={`${largeFonts ? 'text-sm' : 'text-xs'} text-amber-900 font-medium mb-1`}>
+                          Report Suspicious Activity
+                        </p>
+                        <p className={`${largeFonts ? 'text-xs' : 'text-[10px]'} text-amber-800`}>
+                          If you suspect fraud, report to Cyber Crime Portal at <span className="font-semibold">cybercrime.gov.in</span> or call <span className="font-semibold">1930</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Card>
           </div>
         ) : (
           /* Level 3: Advanced - Full featured, compact */
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div>
-              <Card className="p-6 shadow-sm">
-                <h2 className={`${largeFonts ? 'text-xl' : 'text-lg'} font-medium mb-4 ${highContrast ? 'text-white' : ''}`}>Send Money</h2>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div>
+                  <Card className="p-6 shadow-sm">
+                    <h2 className={`${largeFonts ? 'text-xl' : 'text-lg'} font-medium mb-4 ${highContrast ? 'text-white' : ''}`}>Send Money</h2>
 
-                <div className="grid grid-cols-3 gap-2 mb-4">
-                  {contacts.map(c => (
-                    <button
-                      key={c.id}
-                      onClick={() => setSelected(c)}
-                      className={`p-3 rounded-lg border text-center transition-colors ${
-                        selected.id === c.id
-                          ? 'border-primary bg-primary/5'
-                          : highContrast ? 'border-white/50 hover:border-white' : 'border-transparent hover:border-border'
-                      }`}
-                    >
-                      <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white font-semibold mx-auto mb-2 ${c.color}`}>
-                        {c.name.split(' ').map(s => s[0]).slice(0,2).join('')}
-                      </div>
-                      <div className={`text-xs font-medium truncate ${highContrast ? 'text-white' : ''}`}>{c.name}</div>
-                    </button>
-                  ))}
-                </div>
-
-                <form onSubmit={onPayClick} className="space-y-3">
-                  <div className="grid grid-cols-2 gap-3">
-                    <div>
-                      <label className={`text-xs ${highContrast ? 'text-white' : 'text-muted-foreground'}`}>Amount (₹)</label>
-                      <input
-                        type="number"
-                        min="1"
-                        value={amount}
-                        onChange={e => setAmount(e.target.value)}
-                        className={`w-full mt-1 px-3 py-2 text-sm rounded-lg border border-border bg-transparent outline-none focus:ring-2 focus:ring-primary/20 ${highContrast ? 'border-white text-white' : ''}`}
-                      />
+                    <div className="flex gap-3 mb-4 overflow-x-auto no-scrollbar">
+                      {contacts.map(c => (
+                        <button
+                          key={c.id}
+                          onClick={() => setSelected(c)}
+                          className={`flex-none min-w-36 sm:min-w-40 text-left p-3 rounded-lg border transition-colors ${selected.id === c.id
+                              ? 'border-primary bg-primary/5'
+                              : highContrast ? 'border-white/50 hover:border-white' : 'border-transparent hover:border-border'
+                            }`}
+                        >
+                          <div className="flex items-center gap-3">
+                            <div className={`w-12 h-12 rounded-full flex items-center justify-center text-white font-semibold ${c.color}`}>
+                              {c.name.split(' ').map(s => s[0]).slice(0, 2).join('')}
+                            </div>
+                            <div>
+                              <div className={`font-medium ${highContrast ? 'text-white' : ''}`}>{c.name}</div>
+                              <div className={`text-sm ${highContrast ? 'text-gray-300' : 'text-muted-foreground'}`}>{c.upi}</div>
+                            </div>
+                          </div>
+                        </button>
+                      ))}
                     </div>
-                    <div>
-                      <label className={`text-xs ${highContrast ? 'text-white' : 'text-muted-foreground'}`}>Category</label>
-                      <select
-                        value={payCategory}
-                        onChange={e => setPayCategory(e.target.value)}
-                        className={`w-full mt-1 px-3 py-2 text-sm rounded-lg border border-border bg-transparent outline-none ${highContrast ? 'border-white text-white' : ''}`}
+
+                    <form onSubmit={onPayClick} className="flex flex-col md:flex-row md:items-end gap-3">
+                      <div className="flex-1">
+                        <label className={`text-sm ${highContrast ? 'text-white' : 'text-muted-foreground'}`}>Amount (₹)</label>
+                        <input
+                          type="number"
+                          min="1"
+                          value={amount}
+                          onChange={e => setAmount(e.target.value)}
+                          className={`w-full mt-1 px-4 py-3 rounded-lg border border-border bg-transparent outline-none focus:ring-2 focus:ring-primary/20 ${highContrast ? 'border-white text-white' : ''}`}
+                        />
+                      </div>
+
+                      <div className="w-full md:w-48">
+                        <label className={`text-sm ${highContrast ? 'text-white' : 'text-muted-foreground'}`}>Category</label>
+                        <select
+                          value={payCategory}
+                          onChange={e => setPayCategory(e.target.value)}
+                          className={`w-full mt-1 px-3 py-3 rounded-lg border border-border bg-transparent outline-none ${highContrast ? 'border-white text-white' : ''}`}
+                        >
+                          {categories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
+                        </select>
+                      </div>
+
+                      <Button
+                        type="submit"
+                        disabled={status === 'processing'}
+                        className={`${highContrast ? 'bg-white text-black hover:bg-gray-200 border-2 border-white' : ''}`}
                       >
-                        {categories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
-                      </select>
+                        {status === 'processing' ? 'Processing...' : 'Pay'}
+                      </Button>
+                    </form>
+                  </Card>
+
+
+
+                </div>
+                {/* Safety Tips Card */}
+                <Card className={`p-5 m-0 col-auto${highContrast ? 'bg-blue-50 border-2 border-blue-500' : 'bg-blue-50/50 border border-blue-200'}`}>
+                  <div className="flex items-start gap-3">
+                    <div className="text-2xl">💡</div>
+                    <div className="flex-1">
+                      <h3 className={`font-semibold mb-2 ${largeFonts ? 'text-base' : 'text-sm'} ${highContrast ? 'text-blue-900' : 'text-blue-900'}`}>
+                        Money Management Tip
+                      </h3>
+                      <p className={`${largeFonts ? 'text-sm' : 'text-xs'} text-blue-800 mb-10`}>
+                        Always verify the UPI ID before sending money. Double-check recipient details to avoid fraud.
+                      </p>
+                      <div className="flex items-start gap-1 p-5 rounded-lg bg-amber-50 border border-amber-200">
+                        <div className="text-lg">🛡️</div>
+                        <div>
+                          <p className={`${largeFonts ? 'text-sm' : 'text-xs'} text-amber-900 font-medium mb-1`}>
+                            Report Suspicious Activity
+                          </p>
+                          <p className={`${largeFonts ? 'text-xs' : 'text-[10px]'} text-amber-800`}>
+                            If you suspect fraud, report to Cyber Crime Portal at <span className="font-semibold">cybercrime.gov.in</span> or call <span className="font-semibold">1930</span>
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-
-                  <Button
-                    type="submit"
-                    disabled={status === 'processing'}
-                    className={`w-full ${highContrast ? 'bg-white text-black hover:bg-gray-200 border-2 border-white' : ''}`}
-                  >
-                    {status === 'processing' ? 'Processing...' : 'Pay'}
-                  </Button>
-                </form>
-              </Card>
-            </div>
-          </div>
+                </Card>
+              </div>
         )}
 
         {/* Balance, Recent Payments & Actions - Different layouts per level */}
         {uiLevel === 1 ? (
           /* Level 1: Simple balance + basic actions */
           <div className="grid grid-cols-1 gap-6 mt-6">
-            <Card className={`p-8 ${highContrast ? 'bg-black border-2 border-white' : ''}`}>
+            <Card className={`p-8 ${highContrast ? 'bg-black border-2 border-white' : 'bg-white shadow-sm'}`}>
               <div className="text-center mb-6">
-                <h3 className={`${largeFonts ? 'text-xl' : 'text-lg'} ${highContrast ? 'text-white' : 'text-muted-foreground'} mb-2`}>Available Balance</h3>
-                <div className={`${largeFonts ? 'text-5xl' : 'text-4xl'} font-bold ${balance < 10000 ? 'text-red-500' : balance < 50000 ? 'text-yellow-500' : 'text-green-500'}`}>
+                <h3 className={`${largeFonts ? 'text-base' : 'text-sm'} ${highContrast ? 'text-white' : 'text-gray-500'} mb-2 font-normal`}>Available Balance</h3>
+                <div className={`${largeFonts ? 'text-5xl' : 'text-4xl'} font-bold ${balance < 10000 ? 'text-red-500' : balance < 50000 ? 'text-yellow-500' : 'text-green-600'}`}>
                   ₹{balance.toLocaleString('en-IN')}
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3">
                 {[
                   { emoji: '✨', label: 'Pay Bills', sublabel: 'बिल भरें' },
                   { emoji: '🧮', label: 'Recharge', sublabel: 'रिचार्ज करें' },
                   { emoji: '🏛️', label: 'Statement', sublabel: 'खाता विवरण' },
                   { emoji: '🔒', label: 'Card Lock', sublabel: 'कार्ड लॉक' },
                 ].map((action, idx) => (
-                  <Button
+                  <button
                     key={idx}
-                    className={`${largeFonts ? 'py-6 text-lg' : 'py-5'} rounded-xl ${
+                    className={`${largeFonts ? 'py-6' : 'py-5'} rounded-lg border transition-all cursor-pointer ${
                       highContrast
-                        ? 'bg-white text-black hover:bg-gray-200 border-2 border-white'
-                        : 'bg-gradient-to-br from-blue-500 to-cyan-500 text-white'
+                        ? 'bg-white text-black hover:bg-gray-200 border-white'
+                        : 'border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 hover:shadow-sm'
                     }`}
                   >
-                    <span className="text-3xl mr-2">{action.emoji}</span>
-                    <div className="text-left">
-                      <div className="font-bold">{action.label}</div>
-                      <div className="text-xs opacity-90">{action.sublabel}</div>
-                    </div>
-                  </Button>
+                    <span className={`${largeFonts ? 'text-3xl' : 'text-2xl'} mb-2 block`}>{action.emoji}</span>
+                    <div className={`font-semibold ${largeFonts ? 'text-base' : 'text-sm'} ${highContrast ? 'text-black' : 'text-gray-800'}`}>{action.label}</div>
+                    <div className={`text-xs mt-0.5 ${highContrast ? 'text-gray-600' : 'text-gray-500'}`}>{action.sublabel}</div>
+                  </button>
                 ))}
               </div>
             </Card>
@@ -496,7 +553,7 @@ export default function PayInsights() {
         ) : uiLevel === 2 ? (
           /* Level 2: Standard layout with balance, insights, and recent payments */
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-            {/* Left: Recent Payments */}
+            {/* Left: Recent Payments */} 
             {history.length > 0 && (
               <Card className="p-6">
                 <div className="flex items-center justify-between mb-4">
@@ -552,182 +609,165 @@ export default function PayInsights() {
               </Card>
             )}
 
-             {/* Right: Balance & Insights */}
-             <div className="space-y-6">
-               <Card className={`p-6 ${highContrast ? 'bg-white border-2 border-white' : 'bg-card border-2 border-primary/10'}`}>
-                 <div className="mb-4">
-                   <h4 className={`${largeFonts ? 'text-base' : 'text-sm'} ${highContrast ? 'text-black' : 'text-muted-foreground'} mb-1`}>Available Balance</h4>
-                   <div className={`${largeFonts ? 'text-4xl' : 'text-3xl'} font-bold mb-3 ${balance < 10000 ? 'text-red-500' : balance < 50000 ? 'text-yellow-500' : 'text-green-600'}`}>
-                     ₹{balance.toLocaleString('en-IN')}
-                   </div>
-                   <Badge className={`${highContrast ? 'bg-black text-white' : 'bg-primary/10 text-primary border border-primary/20'}`}>
-                     Weekly: ₹{weeklySpend}
-                   </Badge>
-                 </div>
-               </Card>
-
-              <Card className={`p-6 ${highContrast ? 'bg-white border-2 border-white' : ''}`}>
-                <h4 className={`${largeFonts ? 'text-base' : 'text-sm'} font-medium mb-3 ${highContrast ? 'text-black' : ''}`}>Top Categories</h4>
-                <div className="space-y-2">
-                  {topCategories.slice(0, 3).map((cat, idx) => (
-                    <div key={idx} className="flex items-center justify-between">
-                      <span className={`${largeFonts ? 'text-sm' : 'text-xs'} ${highContrast ? 'text-black' : ''}`}>{cat.category}</span>
-                      <span className={`${largeFonts ? 'text-sm' : 'text-xs'} ${highContrast ? 'text-gray-700' : 'text-muted-foreground'}`}>{cat.percentage}%</span>
+              {/* Right: Balance & Insights */}
+              <div className="space-y-6">
+                <Card className={`p-6 ${highContrast ? 'bg-white border-2 border-white' : 'bg-card border-2 border-primary/10'}`}>
+                  <div className="mb-4">
+                    <h4 className={`${largeFonts ? 'text-base' : 'text-sm'} ${highContrast ? 'text-black' : 'text-muted-foreground'} mb-1`}>Available Balance</h4>
+                    <div className={`${largeFonts ? 'text-4xl' : 'text-3xl'} font-bold mb-3 ${balance < 10000 ? 'text-red-500' : balance < 50000 ? 'text-yellow-500' : 'text-green-600'}`}>
+                      ₹{balance.toLocaleString('en-IN')}
                     </div>
-                  ))}
-                </div>
-              </Card>
-
-              <Card className={`p-6 ${highContrast ? 'bg-white border-2 border-white' : ''}`}>
-                <div className="grid grid-cols-2 gap-3">
-                  {[
-                    { emoji: '✨', label: 'Pay Bills', sublabel: 'बिल भरें' },
-                    { emoji: '🧮', label: 'Recharge', sublabel: 'रिचार्ज करें' },
-                    { emoji: '🏛️', label: 'Statement', sublabel: 'खाता विवरण' },
-                    { emoji: '🔒', label: 'Card Lock', sublabel: 'कार्ड लॉक' },
-                  ].map((action, idx) => (
-                    <button
-                      key={idx}
-                      className={`flex flex-col items-center gap-2 p-4 rounded-lg border transition-colors ${
-                        highContrast
-                          ? 'border-white bg-black text-white hover:bg-white hover:text-black'
-                          : 'border-border bg-background/50 hover:bg-background hover:border-primary/50'
-                      }`}
-                    >
-                      <div className="text-2xl">{action.emoji}</div>
-                      <div className={`font-medium ${largeFonts ? 'text-sm' : 'text-xs'} ${highContrast ? '' : ''}`}>{action.label}</div>
-                      <div className={`text-xs ${highContrast ? 'text-gray-300' : 'text-muted-foreground'}`}>{action.sublabel}</div>
-                    </button>
-                  ))}
-                </div>
-              </Card>
-            </div>
-          </div>
-        ) : (
-          /* Level 3: Advanced - Detailed analytics and compact layout */
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
-            {/* Left: Recent Transactions - Detailed */}
-            <div className="lg:col-span-2">
-              {history.length > 0 && (
-                <Card className="p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className={`${largeFonts ? 'text-lg' : 'text-base'} font-medium ${highContrast ? 'text-white' : ''}`}>Recent Transactions</h3>
-                    <div className="flex items-center gap-2">
-                      {categories.map(cat => (
-                        <button
-                          key={cat}
-                          onClick={() => setSelectedCategory(cat)}
-                          className={`text-xs px-2 py-1 rounded-full transition-colors ${
-                            selectedCategory === cat
-                              ? 'bg-primary text-white'
-                              : highContrast ? 'bg-white/20 text-white border border-white/50' : 'bg-background border border-border'
-                          }`}
-                        >
-                          {cat}
-                        </button>
-                      ))}
-                    </div>
+                    <Badge className={`${highContrast ? 'bg-black text-white' : 'bg-primary/10 text-primary border border-primary/20'}`}>
+                      Weekly: ₹{weeklySpend}
+                    </Badge>
                   </div>
+                </Card>
+
+                <Card className={`p-6 ${highContrast ? 'bg-white border-2 border-white' : ''}`}>
+                  <h4 className={`${largeFonts ? 'text-base' : 'text-sm'} font-medium mb-3 ${highContrast ? 'text-black' : ''}`}>Top Categories</h4>
                   <div className="space-y-2">
-                    {history.filter(h => selectedCategory === 'All' || h.category === selectedCategory).map(h => (
-                      <div
-                        key={h.id}
-                        className={`flex items-center justify-between p-3 rounded-lg border ${
-                          highContrast ? 'border-white bg-white' : 'border-border'
-                        }`}
-                      >
-                        <div className="flex items-center gap-3">
-                          <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${highContrast ? 'bg-black' : 'bg-muted'}`}>
-                            <span className="text-sm">{
-                              h.category === 'Groceries' ? '🛒' : h.category === 'Market' ? '🏪' : h.category === 'Cafe' ? '☕' : '💸'
-                            }</span>
-                          </div>
-                          <div>
-                            <div className={`font-medium text-sm ${highContrast ? 'text-black' : ''}`}>{h.to}</div>
-                            <div className={`text-xs ${highContrast ? 'text-gray-700' : 'text-muted-foreground'}`}>
-                              {h.category} • {formatDate(h.date)}
-                            </div>
-                          </div>
-                        </div>
-                        <div className="flex items-center gap-3">
-                          <div className={`font-bold text-sm ${highContrast ? 'text-black' : ''}`}>₹{h.amount}</div>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => onRepeat(h)}
-                            className={highContrast ? 'text-black hover:bg-gray-200' : ''}
-                          >
-                            Repeat
-                          </Button>
-                        </div>
+                    {topCategories.slice(0, 3).map((cat, idx) => (
+                      <div key={idx} className="flex items-center justify-between">
+                        <span className={`${largeFonts ? 'text-sm' : 'text-xs'} ${highContrast ? 'text-black' : ''}`}>{cat.category}</span>
+                        <span className={`${largeFonts ? 'text-sm' : 'text-xs'} ${highContrast ? 'text-gray-700' : 'text-muted-foreground'}`}>{cat.percentage}%</span>
                       </div>
                     ))}
                   </div>
                 </Card>
-              )}
+
+                <Card className={`p-6 ${highContrast ? 'bg-white border-2 border-white' : ''}`}>
+                  <div className="grid grid-cols-2 gap-3">
+                    {[
+                      { emoji: '✨', label: 'Pay Bills', sublabel: 'बिल भरें' },
+                      { emoji: '🧮', label: 'Recharge', sublabel: 'रिचार्ज करें' },
+                      { emoji: '🏛️', label: 'Statement', sublabel: 'खाता विवरण' },
+                      { emoji: '🔒', label: 'Card Lock', sublabel: 'कार्ड लॉक' },
+                    ].map((action, idx) => (
+                      <button
+                        key={idx}
+                        className={`flex flex-col items-center gap-2 p-4 rounded-lg border transition-colors ${highContrast
+                            ? 'border-white bg-black text-white hover:bg-white hover:text-black'
+                            : 'border-border bg-background/50 hover:bg-background hover:border-primary/50'
+                          }`}
+                      >
+                        <div className="text-2xl">{action.emoji}</div>
+                        <div className={`font-medium ${largeFonts ? 'text-sm' : 'text-xs'} ${highContrast ? '' : ''}`}>{action.label}</div>
+                        <div className={`text-xs ${highContrast ? 'text-gray-300' : 'text-muted-foreground'}`}>{action.sublabel}</div>
+                      </button>
+                    ))}
+                  </div>
+                </Card>
+              </div>
             </div>
-
-             {/* Right: Balance & Analytics */}
-             <div className="space-y-4">
-               <Card className={`p-4 ${highContrast ? 'bg-white border-2 border-white' : 'bg-card border-2 border-primary/10'}`}>
-                 <div className="mb-2">
-                   <p className={`text-xs ${highContrast ? 'text-black' : 'text-muted-foreground'} mb-1`}>Total Balance</p>
-                   <h3 className={`${largeFonts ? 'text-3xl' : 'text-2xl'} font-bold mb-2 ${balance < 10000 ? 'text-red-500' : balance < 50000 ? 'text-yellow-500' : 'text-green-600'}`}>
-                     ₹{balance.toLocaleString('en-IN')}
-                   </h3>
-                   <div className={`flex items-center gap-4 text-xs ${highContrast ? 'text-black' : 'text-muted-foreground'}`}>
-                     <div>
-                       <div>Weekly</div>
-                       <div className="font-semibold">₹{weeklySpend}</div>
-                     </div>
-                   </div>
-                 </div>
-               </Card>
-
-              <Card className={`p-4 ${highContrast ? 'bg-white border-2 border-white' : ''}`}>
-                <h4 className={`text-xs font-medium mb-2 ${highContrast ? 'text-black' : ''}`}>Top Categories</h4>
+        ) : (
+          /* Level 3: Advanced - Detailed analytics and compact layout */
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+            {/* Left: Recent Payments */} 
+            {history.length > 0 && (
+              <Card className="p-6">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className={`${largeFonts ? 'text-lg' : 'text-base'} font-medium ${highContrast ? 'text-white' : ''}`}>Recent Payments</h3>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    {categories.slice(0, 4).map(cat => (
+                      <button
+                        key={cat}
+                        onClick={() => setSelectedCategory(cat)}
+                        className={`text-xs px-2 py-1 rounded-full transition-colors ${
+                          selectedCategory === cat
+                            ? 'bg-primary text-white'
+                            : highContrast ? 'bg-white/20 text-white border border-white/50' : 'bg-background border border-border'
+                        }`}
+                      >
+                        {cat}
+                      </button>
+                    ))}
+                  </div>
+                </div>
                 <div className="space-y-2">
-                  {topCategories.map((cat, idx) => (
-                    <div key={idx}>
-                      <div className="flex items-center justify-between mb-1">
-                        <span className={`text-xs ${highContrast ? 'text-black' : ''}`}>{cat.category}</span>
-                        <span className={`text-xs ${highContrast ? 'text-gray-700' : 'text-muted-foreground'}`}>{cat.percentage}%</span>
+                  {history.filter(h => selectedCategory === 'All' || h.category === selectedCategory).slice(0, 5).map(h => (
+                    <Card key={h.id} className={`p-3 ${highContrast ? 'bg-white border-2 border-white' : ''}`}>
+                      <div className="flex items-center gap-3">
+                        <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${highContrast ? 'bg-black' : 'bg-muted'}`}>
+                          <span className="text-lg">{
+                            h.category === 'Groceries' ? '🛒' : h.category === 'Market' ? '🏪' : h.category === 'Cafe' ? '☕' : '💸'
+                          }</span>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className={`font-medium ${largeFonts ? 'text-base' : 'text-sm'} ${highContrast ? 'text-black' : ''}`}>
+                            {h.to}
+                          </div>
+                          <div className={`text-xs ${highContrast ? 'text-gray-700' : 'text-muted-foreground'}`}>
+                            {formatDate(h.date)}
+                          </div>
+                        </div>
+                        <div className="text-right">
+                          <div className={`font-bold ${largeFonts ? 'text-base' : 'text-sm'} ${highContrast ? 'text-black' : ''}`}>
+                            ₹{h.amount}
+                          </div>
+                          <button
+                            onClick={() => onRepeat(h)}
+                            className={`text-xs mt-1 ${highContrast ? 'text-blue-700' : 'text-primary'} hover:underline`}
+                          >
+                            Repeat
+                          </button>
+                        </div>
                       </div>
-                      <div className={`h-1 rounded-full ${highContrast ? 'bg-gray-300' : 'bg-muted'}`}>
-                        <div
-                          className={`h-full rounded-full bg-primary`}
-                          style={{ width: `${cat.percentage}%` }}
-                        />
-                      </div>
-                    </div>
+                    </Card>
                   ))}
                 </div>
               </Card>
+            )}
 
-              <Card className={`p-4 ${highContrast ? 'bg-white border-2 border-white' : ''}`}>
-                <div className="grid grid-cols-2 gap-2">
-                  {[
-                    { emoji: '✨', label: 'Bills' },
-                    { emoji: '🧮', label: 'Recharge' },
-                    { emoji: '🏛️', label: 'Statement' },
-                    { emoji: '🔒', label: 'Lock' },
-                  ].map((action, idx) => (
-                    <button
-                      key={idx}
-                      className={`flex flex-col items-center gap-1 p-3 rounded-lg border transition-colors ${
-                        highContrast
-                          ? 'border-white bg-black text-white hover:bg-white hover:text-black'
-                          : 'border-border bg-background/50 hover:bg-background hover:border-primary/50'
-                      }`}
-                    >
-                      <span className="text-xl">{action.emoji}</span>
-                      <span className={`text-xs ${highContrast ? '' : ''}`}>{action.label}</span>
-                    </button>
-                  ))}
-                </div>
-              </Card>
+              {/* Right: Balance & Insights */}
+              <div className="space-y-6">
+                <Card className={`p-6 ${highContrast ? 'bg-white border-2 border-white' : 'bg-card border-2 border-primary/10'}`}>
+                  <div className="mb-4">
+                    <h4 className={`${largeFonts ? 'text-base' : 'text-sm'} ${highContrast ? 'text-black' : 'text-muted-foreground'} mb-1`}>Available Balance</h4>
+                    <div className={`${largeFonts ? 'text-4xl' : 'text-3xl'} font-bold mb-3 ${balance < 10000 ? 'text-red-500' : balance < 50000 ? 'text-yellow-500' : 'text-green-600'}`}>
+                      ₹{balance.toLocaleString('en-IN')}
+                    </div>
+                    <Badge className={`${highContrast ? 'bg-black text-white' : 'bg-primary/10 text-primary border border-primary/20'}`}>
+                      Weekly: ₹{weeklySpend}
+                    </Badge>
+                  </div>
+                </Card>
+
+                <Card className={`p-6 ${highContrast ? 'bg-white border-2 border-white' : ''}`}>
+                  <h4 className={`${largeFonts ? 'text-base' : 'text-sm'} font-medium mb-3 ${highContrast ? 'text-black' : ''}`}>Top Categories</h4>
+                  <div className="space-y-2">
+                    {topCategories.slice(0, 3).map((cat, idx) => (
+                      <div key={idx} className="flex items-center justify-between">
+                        <span className={`${largeFonts ? 'text-sm' : 'text-xs'} ${highContrast ? 'text-black' : ''}`}>{cat.category}</span>
+                        <span className={`${largeFonts ? 'text-sm' : 'text-xs'} ${highContrast ? 'text-gray-700' : 'text-muted-foreground'}`}>{cat.percentage}%</span>
+                      </div>
+                    ))}
+                  </div>
+                </Card>
+
+                <Card className={`p-6 ${highContrast ? 'bg-white border-2 border-white' : ''}`}>
+                  <div className="grid grid-cols-2 gap-3">
+                    {[
+                      { emoji: '✨', label: 'Pay Bills', sublabel: 'बिल भरें' },
+                      { emoji: '🧮', label: 'Recharge', sublabel: 'रिचार्ज करें' },
+                      { emoji: '🏛️', label: 'Statement', sublabel: 'खाता विवरण' },
+                      { emoji: '🔒', label: 'Card Lock', sublabel: 'कार्ड लॉक' },
+                    ].map((action, idx) => (
+                      <button
+                        key={idx}
+                        className={`flex flex-col items-center gap-2 p-4 rounded-lg border transition-colors ${highContrast
+                            ? 'border-white bg-black text-white hover:bg-white hover:text-black'
+                            : 'border-border bg-background/50 hover:bg-background hover:border-primary/50'
+                          }`}
+                      >
+                        <div className="text-2xl">{action.emoji}</div>
+                        <div className={`font-medium ${largeFonts ? 'text-sm' : 'text-xs'} ${highContrast ? '' : ''}`}>{action.label}</div>
+                        <div className={`text-xs ${highContrast ? 'text-gray-300' : 'text-muted-foreground'}`}>{action.sublabel}</div>
+                      </button>
+                    ))}
+                  </div>
+                </Card>
+              </div>
             </div>
-          </div>
         )}
       </div>
 
